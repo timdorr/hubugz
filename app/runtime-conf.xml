@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="colony">
+      <datasource id="colony">
+        <adapter>mysql</adapter>
+        <connection>
+          <!-- Please update the login information below for your environment -->
+          <dsn>mysql:host=localhost;dbname=hubugz</dsn>
+          <user>root</user>
+          <password>pants</password>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>
+

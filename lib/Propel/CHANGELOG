@@ -1,0 +1,157 @@
+= Changelog Of The Propel 1.5 Branch =
+
+== 2010-08-16: Version 1.5.3 ==
+
+ * [1912] Fixed incorrect test syntax (niklas) (closes #1092)
+ * [1911] Fixed `NamespaceTest` in PostgreSQL (niklas) (refs #1089)
+ * [1910] Fixed single table inheritance when using packages (closes #1091)
+ * [1909] Moved DELETE sql code service to `BasePeer` (niklas) (closes #1090)
+ * [1906] Fixed concrete table inheritance duplicates parent entries on fixture load (chris) (closes #1054)
+ * [1904] Replaced `MssqlDateTime.class.php` as it is still required when using `pdo_dblib` (KRavEN) (Closes #1045)
+ * [1899] Added `ModelCriteria::groupByClass()` to ease the use of aggregate functions with PostgreSQL (closes #1022)
+ * [1898] Fixed all formatters when dealing with joined hydration of objects linked by a custom relation name (closes #1076, #977)
+ * [1895] Fixed typo in `PropelOnDemandFormatter` that makes in fail with single table inheritance (closes #1078)
+ * [1893] Fixed unit tests that were failing for a lack of order by clause (refs #991)
+ * [1881] Fixed typo in behaviors doc (refs #1046)
+ * [1880] Fixed generated useFkQuery() to allow subsequent use of with() (based on a patch by ngnpope) (closes #1035)
+ * [1879] Fixed test failing for the wrong reason (refs r1873)
+ * [1876] ordering classmap by classname, to avoid discrepancies due to OS/Phing differences
+ * [1873] Added tests for `PDOStatement::fetch()` after `PDO::commit()` PDO driver support (KRavEN)
+ * [1872] added md5 of binary file contents to prevent cli terminal issues when assertEquals fails (KRavEN)
+ * [1868] added md5 of binary file contents to prevent cli terminal issues when assertEquals fails (KRavEN)
+ * [1866] Added a warning for unit tests without PHP 5.3 (closes #1056)
+ * [1863] Fixed generated nested_set getter and setter when the scope column is called "scope_value" (closes #1051)
+ * [1857] Fixed generated nested_set getter and setter when the level column is called "level" (closes #1051)
+ * [1856] Improved composite FK getter to use instance pool (ArnaudD) (closes #1011)
+ * [1855] fixed a typo (refs #991)
+ * [1854] added `PropelSimpleArrayFormatter` to docs (refs #991)
+ * [1853] moved `ModelCriteria::select()` docs. removed `ModelCriteriaSelectTests` that would always fail (refs #991)
+ * [1851] Refactored `ModelCriteria::select()` tests (refs #991)
+ * [1850] Fixed coding standards in `ModelCriteria::select()` (refs #991)
+ * [1849] Using `mb_strlen()` instead of `strlen()` in validators when available (closes #1038)
+ * [1848] Fixed two step single table inheritance (closes #1033)
+ * [1847] Fixed missing parameter in `auto_add_pk` behavior documentation (ngnpope) (closes #1048)
+ * [1846] fixed `ModelCriteria::select()` documentation formatting. (refs #991)
+ * [1845] added `ModelCriteria::select()` documentation. (refs #991)
+ * [1844] Resolved whitespace descrepancies. (refs #986, #991) (closes #1045)
+ * [1843] initial support for `pdo_sqlsrv`. (refs #986)
+ * [1842] added `ModelCriteria::select()` implementation. (refs #991)
+ * [1841] Added proper `DBMSSQL::getTimestampFormatter()`. Removed obsolete `MssqlDateTime.class.php`. (closes #1045)
+ * [1839] Allowed behaviors to add classes (refs #1046)
+ * [1838] Made `DebugPDOStatement` able to log calls to `bindParam()` (based on a patch by ddalmais)
+ * [1832] Made nested set behavior faster by allowing the use of smart index in `branchOf()` and `descendentsOf()` (patch from Wicked) (closes #1034)
+ * [1831] Fixed `ModelCriteria::addJoin()` behaves differently than `Criteria::addJoin()` (closes #1041)
+ * [1826] Fixed namespaced tests that were falling since r1815
+ * [1821] documented the `namespace.autoPackage` build property (refs #1005)
+ * [1820] Allowed custom `BaseObject` classes to define their own `__call()` defaults (closes #1029)
+ * [1819] failing loudly instead of deleting too many results when doDelete() is called on a Criteria with join (closes #1030)
+ * [1818] Fixed `populateRelation()` documentation (closes #1023)
+ * [1817] Fixed issue with `classPrefix` and timestampable behavior (closes #1027)
+ * [1816] Fixed `filterByPrimaryKeys()` when passed an empty array with composite pks, made populateRelation() smarter when dealing with empty collections (closes #1025)
+ * [1815] Fixed regression in SQL build (`mysql.tableType` build property was not used anymore)
+
+== 2010-06-17: Version 1.5.2 ==
+
+ * [1810] Changed default table type keyword to ENGINE for MySQL (closes #969)
+ * [1809] Added a way to read virtual columns starting with a lowercase character (closes #993)
+ * [1808] Added connection object to the FK getter (closes #1018)
+ * [1807] Fixed namespace issue with `soft_delete` behavior (closes #1015)
+ * [1806] Fixed issue with instance pooling and soft_delete behavior (closes #1016)
+ * [1805] Added namespace declaration to model class interface (closes #1014)
+ * [1804] Improved generated class code when using namespaces (refs #683)
+ * [1803] Documented namespace.autoPackage build property (refs #1005)
+ * [1802] Added support for package autosetting based on namespace attribute (refs #1005)
+ * [1801] Fixed related instance pooling clear in case of an emulated on delete cascade / set null (refs #1012)
+ * [1800] Fixed onDelete cascade and setnull for self-referencing foreign keys (closes #1012)
+ * [1799] Fixed `ModelCriteria::find()` throws `Exception` instead of `PropelException`
+ * [1798] Fixed hard-to-debug unit test exception message
+ * [1797] Fixed cascade deletion emulation when `Criteria` is modified by `doSelect()` (closes #1008)
+ * [1796] Added `ModelCriteria::findOneOrCreate()` (closes #1009)
+ * [1795] Fixed `delete()` called in iterator breaks on demand formatter (closes #1006)
+ * [1794] Fixed double iteration on Propel collection (closes #1004) (patch from jeremyp)
+ * [1793] Documented namespaces (refs #683)
+ * [1792] Added support for namespaces in many-to-many relationships (refs #683)
+ * [1791] Added support for namespaces in single table inheritance (refs #683)
+ * [1790] Added mention of a common error code in runtime settings documentation
+ * [1789] Documented the simple templating system (refs #1002)
+ * [1788] Allowed namespace tests to run alongside normal tests (refs #683)
+ * [1787] Fixed `PropelObjectCollection::toArray()` when the collection is empty (closes #1001)
+ * [1786] Fixed runtime doc typo
+ * [1785] Refactored the `aggregate_column` behavior to take advantage of the buildtime simple templating engine (refs #1002, #995)
+ * [1784] Added simple templating engine for behaviors (refs #1002)
+ * [1783] Added a !HowTo on writing behaviors (should have been published in the blog, but Posterous is having troubles with code samples)
+ * [1782] Improved namespace support in generated `TableMap` classes (refs #683)
+ * [1781] Introducing Model Namespaces (PHP 5.3 only) (WIP) (refs #683)
+ * [1780] Fixed generated `filterByXXX()` for string columns when using custom comparison
+ * [1779] Added `aggregate_column` behavior (refs #995)
+ * [1778] Refactored `ForeignKey` class in generator
+ * [1777] [doc] Fixed typo in CRUD chapter
+ * [1776] Fixed generated relation names for tables with symmetrical foreign keys (closes #968)
+ * [1775] Fixed generated relation names for tables with more than one self-referencing foreign key (closes #972)
+ * [1774] Fixed copy of foreign keys with hardcoded refPhpName in concrete inheritance behavior (closes #988)
+ * [1773] Changing runtime autoload strategy (closes #974):
+    * Using absolute path in core autoloading
+    * introducing `PropelAutoloader` for models
+    * removing the need for include path change in installation docs
+ * [1772] Added failed SQL query to `BasePeer` exception messages (closes #979)
+ * [1771] Documented the schema autosuggest feature in supported IDEs
+ * [1770] Expanded the schema XSD annotations for easier schema autocompletion
+ * [1769] showcasing link to XSD file in schema to allow autocompletion on NetBeans
+ * [1768] Fixed typos in `ModelCriteria` doc (closes #978) (patch from Frosty)
+ * [1767] Fixed typo in install doc (closes #576)
+ * [1766] Fixed schema DTD does not validate schemas without behaviors (closes #973)
+ * [1765] Added the ability to comment the generated SQL query from a Criteria (closes #970)
+ * [1764] Fixed limitation in schema size when transformation or external schema is included (closes #971)
+ * [1763] Fixed limitation in schema size when no transformation nor external schema is included (closes #971)
+
+== 2010-05-10: Version 1.5.1 ==
+
+ * [1759] Moved ModelWith runtime class to formatter directory
+ * [1758] Fixed warning with new StringReader
+ * [1757] Reduced console logging when building an up-to-date schema
+ * [1756] Parsing schemas as strings instead of files (closes #967)
+ * [1755] Reverting r1548 to allow inclusion of external schemas (refs #967)
+ * [1754] Documented custom defaultJoin type (refs #870) (closes #936)
+ * [1749] fix Criteria::addCond() example and php-doc (closes #964)
+ * [1748] fix Join::addCondition() php-doc (closes #963)
+ * [1747] Add getJoin() method to ModelCriteria (closes #961)
+ * [1745] Fixed auto_add_pk behavior when using separate schemas (closes #956)
+ * [1743] Refactored ModelCriteria::count() to allow query cache on counts
+ * [1742] Fixed propel-gen executable on windows (closes #942)
+ * [1741] disabled query cloning by default, you can enable it on a per query basis using keepQuery() (refs #953)
+ * [1740] Fixed shallow Criteria cloning (refs #953)
+ * [1739] Fixed overriding primary key in a new object (closes #960)
+ * [1738] Fixed generated joinXXX() methods used in secondary Criteria (closes #958)
+ * [1737] Fixed array hydration (refs #954, #959)
+ * [1736] Added unit test to demonstrate Array Hydration regression (refs #959)
+ * [1735] Fixed typo in MySQL DDL builder (closes #957)
+ * [1734] fixed doc typos (patch from Frosty) (closes #955)
+ * [1733] Refactored hydration schema
+    * removed circular dependency between Criteria and Formatter (refs #891)
+    * formatters now copy the necessary hydration data from the ModelCriteria
+    * Should improve memory handling in large resultsets
+    * removed PropelFormatter::setCriteria() and checkCriteria (refs #892)
+ * [1732] refactored on demand hydration (refs #954), removed ModelJoin storage in ModelWith
+ * [1731] Refactored Joined Array hydration (refs #954)
+ * [1730] Changed Propel::enableInstancePooling() return value
+ * [1729] Added a exception to explicit the limits of one-to-many joined hydration
+ * [1728] Refactored joined object hydration
+    * Now deals correctly with any join chain (refs #954)
+    * Faster for large resultsets and long join chains
+ * [1727] refactored BasePeer::doDelete() to handle table aliases and perform better (closes #949)
+ * [1726] Small Criteria optimization
+ * [1725] Fixed ModelCriteria::delete() fails when using true table alias (closes #949)
+ * [1724] Allowed Merging of Criteria objects to combien conditions with an OR (closes #951)
+ * [1723] Added the ability to reindex a collection (closes #851)
+ * [1722] Gave a public way to remove an alias (useful when merging Criterias)
+ * [1721] Added ModelCriteria::postUpdate() and ModelCriteria::postDelete() hooks (closes #945)
+ * [1720] Fixed issue with instance pooling and composite fkeys in peer classes (closes #924)
+ * [1719] Fixed E_STRICT warning in concrete table inheritance (closes #910)
+ * [1718] Added unit tests for PropelObjectCollection::toKeyValue(), and made it just a little smarter (closes #943)
+ * [1717] Fixed typo in Relationships doc closes #941)
+ * [1716] Fixed reverse task and validators (closes #928)
+ * [1715] Fixed phpDoc for Criteria::getCriterion() (closes #929)
+ * [1714] Fixed regression in orderBy() used in conjunction with ignoreCase (closes #946)
+ * [1712] Fixed concrete table inheritance with more than one level (closes #922)
+ * [1711] Fixed filterByXXX() when passed an explicit Criteria::EQUAL (closes #944)
+ * [1710] Fixed references to 1.4 pages in documentaton (closes #937)

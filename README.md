@@ -1,3 +1,8 @@
+Hubugz
+====================
+
+Hubugz is a frontend for the Github Issues system. It's designed for private repositories that want to expose issues to a client or 3rd party without giving full access to their code or requiring them to create a Github account.
+
 License
 -------
 
