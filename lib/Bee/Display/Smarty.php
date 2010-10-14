@@ -39,7 +39,7 @@ require_once 'Bee/Error.php';
 
 
 /** Smarty */
-require_once 'Smarty/Smarty.class.php';
+require_once 'Smarty3/Smarty.class.php';
 
 /**
  * Display backend for the Smarty templating engine
@@ -71,7 +71,10 @@ class Bee_Display_Smarty
         $this->smarty->config_dir = './var/cache/';
         $this->smarty->cache_dir = './var/cache/';
         
-        $this->smarty->register_function( 'error', array( 'Bee_Error', 'formatError' ) );
+        // We're still using it...
+        $this->smarty->allow_php_tag = true;
+        
+        //$this->smarty->register_function( 'error', array( 'Bee_Error', 'formatError' ) );
     }
 
     /**
@@ -86,6 +89,7 @@ class Bee_Display_Smarty
         $this->smarty->assign( $data );
         $this->smarty->assign( 'input', Bee_Input::filterInput() );
         $this->smarty->assign( 'sess', Bee_Registry('sess') );
+        $this->smarty->assign( 'config', Bee_Registry('config') );
         
         // GZip compression
         //ob_start( 'ob_gzhandler' );
