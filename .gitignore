@@ -1,0 +1,8 @@
+var/cache/*php
+var/log/*
+app/Config.php
+app/runtime-conf.xml
+app/build.properties
+app/model/conf/colony-conf.php
+uploads/*
+.DS_Store
