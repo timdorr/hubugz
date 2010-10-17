@@ -5,5 +5,11 @@
         <column name="data" type="longvarchar" />
         <behavior name="timestampable" />
     </table>
+    
+    <table name="user">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="email" type="varchar" size="100" required="true" />
+        <column name="password" type="varchar" size="40" required="true" />
+    </table>
 </database>
 
