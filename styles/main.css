@@ -30,6 +30,22 @@ li {
 
 /* Global Styles */
 
+.error {
+    color: #c22;
+    background-color: #fdd;
+    border: 1px solid #faa;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.warning {
+    color: #660;
+    background-color: #ffc;
+    border: 1px solid #dd9;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
 .blockylist li {
     background-color: #eee;
     border: 1px solid #ccc;

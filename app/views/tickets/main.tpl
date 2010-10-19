@@ -1,6 +1,6 @@
 <h2>Tickets</h2>
 
-<p><a href="/tickets/new"><img src="/images/create.png" /></a></p>
+<p><a href="/tickets/create"><img src="/images/create.png" /></a></p>
 
 <table class="ticketlist">
 <tr class="header">

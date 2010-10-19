@@ -5,6 +5,21 @@ require_once 'HTTP/Request2.php';
 
 class App_Controller extends Bee_Controller
 {
+    protected $req_get  = false;
+    protected $req_post = false;
+
+    public $current_user = null;
+
+    public function __construct( $config )
+    {
+        if( $_SERVER['REQUEST_METHOD'] == 'GET' )
+            $this->req_get = true;
+
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+            $this->req_post = true;
+            
+        parent::__construct( $config );
+    }
 
     public function _setup()
     {
@@ -15,6 +30,26 @@ class App_Controller extends Bee_Controller
         // Need Step 2 of OAuth
         if( !isset( $this->config['oauth_token'] ) && $this->action != 'oauth' )
             $this->redirect( 'oauth/token' );
+            
+        // Make it easier to access the default project
+        if( isset( $this->config['default_project'] ) )
+            $this->_project = $this->config['default_project'];
+        elseif( isset( $this->input['project'] ) )  
+            $this->_project = $this->input['project'];
+            
+        // Get the current user, if there is one
+        $user = UserQuery::create()->findOneByID( $this->sess['user_id'] );
+        if ( !is_null( $user ) )
+        {
+            $this->current_user = $user;
+            $this->sess['user_id'] = $user->getID();
+        } 
+        else 
+            $this->current_user = new User();
+        
+        // Force login
+        if( $this->current_user->getID() == 0 && $this->method != 'login' )
+            $this->redirect( 'login' );
     }
     
     protected function _githubCall( $url, $data = null )
