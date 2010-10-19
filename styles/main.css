@@ -37,6 +37,10 @@ li {
     margin-left: 0;
 }
 
+td.left,   th.left   { text-align: left; }
+td.right,  th.right  { text-align: right; }
+td.center, th.center { text-align: center; }
+
 /* Specific Overall Styles */
 
 #header {

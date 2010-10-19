@@ -1,0 +1,33 @@
+/* Tickets */
+
+.ticketlist {
+    width: 100%;
+}
+
+    .ticketlist tr {
+        background-color: #eee;
+        border: 1px solid #ccc;
+    }
+    
+    .ticketlist tr.header {
+        background-color: transparent;
+        border: none
+    }
+    
+        .ticketlist th {
+            padding: 5px;
+        }
+    
+        .ticketlist td {
+            padding: 10px;
+        }
+    
+        .ticketlist td a {
+            text-decoration: none;
+        }
+        
+        .ticketlist td span {
+            color: #999;
+            font-size: 75%;
+            font-style: italic;
+        }
