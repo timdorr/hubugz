@@ -21,6 +21,11 @@ class Tickets_Controller extends App_Controller
         $this->tickets = $tickets->issues;
     }
     
+    public function show()
+    {
+    
+    }
+    
     public function create()
     {
     
