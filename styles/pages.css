@@ -32,6 +32,15 @@
             font-style: italic;
         }
     
+    .ticketlist tr.spacer {
+        background-color: transparent;
+        border: none;
+    }
+    
+        .ticketlist tr.spacer td {
+            padding: 3px;
+        }
+    
 .label {
     color: #000 !important;
     font-style: normal !important;

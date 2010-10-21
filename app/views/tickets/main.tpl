@@ -27,5 +27,6 @@
         {$t->updated_at}
     </td>
 </tr>
+<tr class="spacer"><td colspan="4"></td></tr>
 {/foreach}
 </table>
