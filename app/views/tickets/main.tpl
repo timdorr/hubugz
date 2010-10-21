@@ -11,7 +11,7 @@
 </tr>
 {foreach from=$tickets item=t}
 <tr>
-    <td>
+    <td style="width:500px">
         <a class="title" href="/tickets/show/{$t->number}">{$t->title}</a>
         {foreach from=$t->labels item=l}<span class="label {if $l == 'Bug Report'}bug{elseif $l == 'Feature Request'}feature{/if}">{$l}</span> {/foreach}
         <br />
