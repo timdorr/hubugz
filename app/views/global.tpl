@@ -24,6 +24,7 @@
 
 <div id="header">
     <a href="/"><img src="/images/logo.png"></a>
+    {if $current_user->getID() > 0}<a href="/logout" class="floatr"><img src="/images/logout.png"></a>{/if}
 </div>
 
 <div id="main">
