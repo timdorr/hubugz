@@ -29,19 +29,46 @@ class Tickets_Controller extends App_Controller
             
             $this->tickets[] = $t;
         }
-        
-        $this->tickets = $tickets->issues;
     }
     
     public function show( $number )
     {
+        // If we're submitting the form
+        if( $this->req_post )
+        {
+            if( empty( $this->input['body'] ) )
+                $this->err = 'You must enter a comment';
+            else
+            {
+                $message = $this->input['body'] . "\n\nOwner: ".$this->current_user->getEmail();
+            
+                $comment = $this->_githubCall( 'issues/comment/'.$this->_project.'/'.intval( $number ), array( 'comment' => $message ) );
+            }
+        }
+    
         // Grab the ticket
         $issue = $this->_githubCall( 'issues/show/'.$this->_project.'/'.intval( $number ) );
         $this->ticket = $issue->issue;
         
         // Grab its comments
         $comments = $this->_githubCall( 'issues/comments/'.$this->_project.'/'.intval( $number ) );
-        $this->comments = $comments->comments;
+        
+        // Format the comments for the page
+        foreach( $comments->comments as $c )
+        {
+            // Fix times
+            $c->updated_at = date( 'm/d/Y g:ia', strtotime( $c->updated_at ) );
+            $c->created_at = date( 'm/d/Y g:ia', strtotime( $c->created_at ) );
+            
+            // Pull out the owner
+            if( preg_match( '/Owner: (.*)/', $c->body, $matches ) )
+            {
+                $c->user = $matches[1];
+                $c->body = preg_replace( '/Owner: (.*)/', '', $c->body );
+            }
+            
+            $this->comments[] = $c;
+        }
         
         $this->page_title = $this->ticket->title.' (#'.$this->ticket->number.')';
     }

@@ -12,6 +12,22 @@
 
 {foreach from=$comments item=c}
 <div class="comment">
-    {$c->body}
+    <p class="title">{$c->user} - {$c->created_at}</p>
+    <p>{$c->body|trim|nl2br}</p>
 </div>
 {/foreach}
+
+<hr />
+
+<form action="/tickets/show/{$ticket->number}" method="post">
+
+<p>
+    <h5>Add A Comment:</h5>
+    {if $err}<div class="error">{$err}</div>{/if}
+    <textarea name="body"></textarea>
+</p>
+
+<p><input type="submit" value="Add Comment" /></p>
+
+
+</form>
