@@ -33,9 +33,17 @@ class Tickets_Controller extends App_Controller
         $this->tickets = $tickets->issues;
     }
     
-    public function show()
+    public function show( $number )
     {
-    
+        // Grab the ticket
+        $issue = $this->_githubCall( 'issues/show/'.$this->_project.'/'.intval( $number ) );
+        $this->ticket = $issue->issue;
+        
+        // Grab its comments
+        $comments = $this->_githubCall( 'issues/comments/'.$this->_project.'/'.intval( $number ) );
+        $this->comments = $comments->comments;
+        
+        $this->page_title = $this->ticket->title.' (#'.$this->ticket->number.')';
     }
     
     public function create()

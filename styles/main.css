@@ -29,7 +29,15 @@ li {
     margin-left: 20px;
 }
 
+hr {
+    border: none;
+    border-bottom: 1px dotted #999;
+}
+
 /* Global Styles */
+
+.floatr { float: right; }
+.floatl { float: left;  }
 
 .error {
     color: #c22;
