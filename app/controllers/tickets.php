@@ -6,6 +6,8 @@ class Tickets_Controller extends App_Controller
 {
     public function main()
     {
+        $this->page_title = 'Tickets';
+    
         $tickets = $this->_githubCall( 'issues/list/'.$this->_project.'/open' );
         
         // Format the tickets for the page
@@ -28,6 +30,6 @@ class Tickets_Controller extends App_Controller
     
     public function create()
     {
-    
+        $this->page_title = 'Create A New Ticket';
     }
 }
