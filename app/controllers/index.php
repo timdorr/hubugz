@@ -54,4 +54,9 @@ class Index_Controller extends App_Controller
     
         $this->redirect( 'login' );
     }
+    
+    public function gherror()
+    {
+        $this->page_title = 'Github Gave An Error';
+    }
 }

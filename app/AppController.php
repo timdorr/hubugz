@@ -55,6 +55,7 @@ class App_Controller extends Bee_Controller
     protected function _githubCall( $url, $data = null )
     {
         $req = new HTTP_Request2( 'https://github.com/api/v2/json/' . $url . "?access_token={$this->config['oauth_token']}" );
+        $req->setConfig(array('timeout' => 10));
         $req->setConfig( 'ssl_verify_peer', false );
         
         // If we have POST data, add it
@@ -68,10 +69,13 @@ class App_Controller extends Bee_Controller
         {
             $res = $req->send();
             
-            if( 200 == $res->getStatus() )
+            if( $res->getStatus() == 200 || $res->getStatus() == 201 )
                 return json_decode( $res->getBody() );
             else
-                return false;        
+            {
+                $this->sess['gh_lasterror'] = print_r( $res, true ) . "\n" . print_r( $req, true );
+                $this->redirect( 'index/gherror' );
+            }
         } 
         catch( Exception $e ) 
         {
