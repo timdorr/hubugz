@@ -12,7 +12,9 @@
 {foreach from=$tickets item=t}
 <tr>
     <td>
-        <a href="/tickets/show/{$t->number}">{$t->title}</a><br />
+        <a class="title" href="/tickets/show/{$t->number}">{$t->title}</a>
+        {foreach from=$t->labels item=l}<span class="label {if $l == 'Bug Report'}bug{elseif $l == 'Feature Request'}feature{/if}">{$l}</span> {/foreach}
+        <br />
         <span>{$t->body|truncate:100}</span>
     </td>
     <td class="center">

@@ -17,6 +17,16 @@ class Tickets_Controller extends App_Controller
             $t->updated_at = date( 'm/d/Y g:ia', strtotime( $t->updated_at ) );
             $t->created_at = date( 'm/d/Y g:ia', strtotime( $t->created_at ) );
             
+            // Find our custom owner
+            foreach( $t->labels as $k => $l )
+            {
+                if( stristr( $l, "Owner_" ) )
+                {
+                    $t->user = str_replace( "Owner_", "", $l );
+                    unset( $t->labels[$k] );
+                }
+            }
+            
             $this->tickets[] = $t;
         }
         

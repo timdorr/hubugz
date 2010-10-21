@@ -31,6 +31,30 @@
             font-size: 75%;
             font-style: italic;
         }
+    
+.label {
+    color: #000 !important;
+    font-style: normal !important;
+    font-size: 12px;
+    padding: 1px 3px;
+    background-color: #f9f9f9;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.label.bug {
+    color: #fff !important;
+    background-color: #F21818;
+    border: 1px solid #C21313;
+}
+        
+.label.feature {
+    color: #fff !important;
+    background-color: #2267F2;
+    border: 1px solid #1B53C2;
+}
 
 /* Create Ticket */
 
